@@ -33,6 +33,7 @@ public class CommandController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/createProgram")
     public Response executor(CreateProgramCommand command) {
+        System.out.println("Controlador 1.1");
         messageService.send(command);
         return Response.ok().build();
     }
@@ -42,6 +43,7 @@ public class CommandController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addCourse")
     public Response executor(AddCourseCommand command) {
+        System.out.println("controlle 1");
         messageService.send(command);
         return Response.ok().build();
     }

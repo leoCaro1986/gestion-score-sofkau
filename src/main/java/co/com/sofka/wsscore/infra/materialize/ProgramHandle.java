@@ -35,6 +35,7 @@ public class ProgramHandle {
     void consumeProgramCreated(CourseAssigned event) {
         BasicDBObject document = new BasicDBObject();
         document.put("courses."+event.getCourseId(), event.getCategories());
+        System.out.println("afecta base de datos 8");
 
         BasicDBObject updateObject = new BasicDBObject();
         updateObject.put("$set", document);

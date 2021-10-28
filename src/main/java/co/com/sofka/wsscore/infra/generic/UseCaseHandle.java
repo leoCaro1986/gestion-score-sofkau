@@ -21,6 +21,7 @@ public abstract class UseCaseHandle {
     public void saveProgram(String programId, List<DomainEvent> events) {
         events.stream().map(event -> {
             String eventBody = EventSerializer.instance().serialize(event);
+            System.out.println("Base de datos 5");
             return new StoredEvent(event.getClass().getTypeName(), new Date(), eventBody);
         }).forEach(storedEvent -> repository.saveEvent("program", programId, storedEvent));
         events.forEach(messageService::send);

@@ -51,6 +51,7 @@ public class MessageService {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 var message = new String(body, StandardCharsets.UTF_8);
+                System.out.println("recibe evento 7");
                 try {
                     var event = EventSerializer.instance()
                             .deserialize(message, Class.forName(properties.getContentType()));
@@ -69,6 +70,7 @@ public class MessageService {
                 @Override
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                    var message = new String(body, StandardCharsets.UTF_8);
+                    System.out.println("Receving 3");
 
                     try {
                         var command = CommandSerializer.instance()
@@ -83,7 +85,7 @@ public class MessageService {
     }
 
     public void send(Command command) {
-        System.out.println("Send command...");
+        System.out.println("Send command 2");
         try {
             var message = CommandSerializer.instance().serialize(command);
             var props = new AMQP.BasicProperties.Builder().contentType(command.getClass().getTypeName()).build();
@@ -94,7 +96,7 @@ public class MessageService {
     }
 
     public void send(DomainEvent event) {
-        System.out.println("Send event...");
+        System.out.println("Send event...6");
         try {
             var message = EventSerializer.instance().serialize(event);
             var props = new AMQP.BasicProperties.Builder().contentType(event.getClass().getTypeName()).build();
